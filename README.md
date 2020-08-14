@@ -1,7 +1,7 @@
 ## UPCAT Application
 
-##### Initialize this as "game" repo for package issues!
+#### Initialize this as "game" repo for package issues!
 
-###### *Made by: George William M. Sison*
+##### *Made by: George William M. Sison*
 
-###### *Date: March 2018*
+##### *Date: March 2018*
