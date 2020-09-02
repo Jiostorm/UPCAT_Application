@@ -4,24 +4,19 @@ import javax.swing.JOptionPane;
 
 public class ExamProgress {
 
-	public ExamProgress(String[] userans, int numques) {
-		String progress = "Your Current Answer(s): ", space = "";
-		//
-		progress += "\n";
-		for(int index = 0; index < numques; index++) {
-			for(int ctr = 5; ctr != userans[index].length(); ctr--) {
-				space+="  ";
+	public ExamProgress(String[] chosed, int qnum) {
+		String progress = "Your Current Answers: ";
+
+		for(int index = 0; index < qnum; index++) {
+			if(index%2 == 0) {
+				if(index < 10) {
+					progress += "\nQuestion No: "+(index+1)+" = "+chosed[index]+"  Question No: "+(index+2)+" = "+chosed[index+1];
+				} else if(index >= 10) {
+					progress += "\nQuestion No:"+(index+1)+" = "+chosed[index]+"  Question No:"+(index+2)+" = "+chosed[index+1];
+				}
 			}
-			if(index < 9) {
-				progress += "|| Question No: 0"+(index+1)+" = "+userans[index]+space+" || ";
-			} else {
-				progress += "|| Question No: "+(index+1)+" = "+userans[index]+space+" || ";
-			}
-			if(index%3 == 2) {
-				progress += "\n";
-			}
-			space = "";
 		}
-		JOptionPane.showMessageDialog(ExamScreen.getJFrame(), progress, "YOUR EXAM PROGRESS", JOptionPane.DEFAULT_OPTION);
+		JOptionPane.showMessageDialog(AppScreen.getframe(), progress, "Your Exam Progress", JOptionPane.DEFAULT_OPTION);
+
 	}
 }
