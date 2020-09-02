@@ -1,15 +1,23 @@
 package game;
 
-import game.initial.StartScreen;
-import game.main.ExamScreen;
+import game.init.LoadingScreen;
+import game.main.AppScreen;
 
 public class AppLauncher {
 
 	public static void main(String[] args) {
-		loadScreen(1);
+		loadWindow(1);
 	}
-	public static void loadScreen(int screen) {
-		if(screen == 1) new StartScreen();
-		if(screen == 2) new ExamScreen();
+	
+	public static void loadWindow(int orient) {
+		switch(orient) {
+		case 1:
+			new LoadingScreen("Start-Up Application");
+			break;
+		case 2:
+			new AppScreen("UP College Admission Test Application");
+			break;
+		}
 	}
+
 }
