@@ -1,58 +1,31 @@
 package game.utils;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class TextLoader {
-
-	@SuppressWarnings("resource")
-	public static String getTextFile(String name, int space) {
+	
+	private BufferedReader reader;
+	//
+	public static String[] neededtext;
+	//
+	public TextLoader(int index) {
+		neededtext = new String[index];
+		
+		reader = new BufferedReader(new InputStreamReader(TextLoader.class.getResourceAsStream("/textfiles/generaltext.txt")));
+		
+		String line;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("src\\game\\res\\txt\\"+name));
-			StringBuilder wtext = new StringBuilder(32);
-			String line;
-			wtext.append("\n");
-			try {
-				while((line = reader.readLine()) != null) {
-					if(space == 1) {
-						wtext.append(line).append("\n");
-					} else if(space == 2) {
-						wtext.append(line).append("\n\n");
-					}
+			for(int lineindex = 0; (line = reader.readLine()) != null; lineindex++) {
+				neededtext[lineindex] = "";
+				String[] linesplit = line.split("`");
+				for(int ctr = 0; ctr < linesplit.length; ctr++) {
+					neededtext[lineindex] += linesplit[ctr]+"\n";
 				}
-				return wtext.toString();
-			} catch(IOException e) {
-				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
-		return null;
-	}
-
-	@SuppressWarnings("resource")
-	public static String getTextFile(int orient) {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("src\\game\\res\\txt\\mode.txt"));
-
-			int ctr = 1;
-			String line;
-			try {
-				while((line = reader.readLine()) != null) {
-					if(ctr == orient) {
-						return "\n"+line;
-					}
-					ctr++;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		return null;
 	}
 }

@@ -11,7 +11,7 @@ import game.utils.ImageLoader;
 @SuppressWarnings("serial")
 public class StartBackGround extends JPanel{
 	
-	private BufferedImage bgimg;
+	private BufferedImage bg;
 	//
 	private int width, height;
 	//
@@ -24,12 +24,11 @@ public class StartBackGround extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		bgimg = ImageLoader.getImage("/image/bg/upcatbg.png");
-
+		
 		setPreferredSize(new Dimension(width, height));
 		setMaximumSize(new Dimension(width, height));
 		setMinimumSize(new Dimension(width, height));
-		
-		g.drawImage(bgimg, 0, 0, width, height-30, null);
+		bg = ImageLoader.loadImage("/image/attributes/upcatbg.png");
+		g.drawImage(bg, 0, 0, width, (height-30), null);
 	}
 }
